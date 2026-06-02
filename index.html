@@ -33,8 +33,8 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 40px 20px;
             box-sizing: border-box;
         }
 
@@ -46,10 +46,92 @@
             border-radius: 24px;
             padding: 40px;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
+        }
+
+        /* Dashboard Styles */
+        #dashboard-container {
+            display: block;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .topic-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            background: var(--glass-hover);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .topic-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #e2e8f0;
+        }
+
+        .topic-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Quiz Styles */
+        #quiz-container {
+            display: none;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--accent);
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
         }
 
         /* Mac-style Code Block */
@@ -70,252 +152,176 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .mac-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
         .mac-close { background: #ff5f56; }
         .mac-min { background: #ffbd2e; }
         .mac-max { background: #27c93f; }
 
-        pre {
-            margin: 0;
-            padding: 20px;
-            overflow-x: auto;
-        }
-
+        pre { margin: 0; padding: 20px; overflow-x: auto; }
         code {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
             color: #e2e8f0;
             line-height: 1.5;
-            tab-size: 4;
         }
 
-        /* Syntax Highlighting Colors */
-        .kw { color: #c678dd; } /* Keywords */
-        .func { color: #61afef; } /* Functions */
-        .str { color: #98c379; } /* Strings */
-        .num { color: #d19a66; } /* Numbers */
+        /* Syntax Highlighting */
+        .kw { color: #c678dd; } 
+        .func { color: #61afef; } 
+        .str { color: #98c379; } 
+        .num { color: #d19a66; } 
         .comment { color: #7f848e; font-style: italic; }
 
-        h2 {
-            font-weight: 600;
-            font-size: 1.4rem;
-            line-height: 1.5;
-            margin-top: 0;
-            margin-bottom: 24px;
-        }
+        h2 { font-weight: 600; font-size: 1.3rem; line-height: 1.5; margin-top: 0; margin-bottom: 24px; }
 
-        .options-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .options-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 
         .option-label {
-            display: flex;
-            align-items: center;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            display: flex; align-items: center; padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            border-radius: 12px; cursor: pointer; transition: all 0.3s ease; font-size: 0.95rem;
         }
 
         .option-label:hover {
-            background: var(--glass-hover);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateX(4px);
+            background: var(--glass-hover); border-color: rgba(255, 255, 255, 0.2); transform: translateX(4px);
         }
 
-        .option-label input {
-            display: none;
-        }
-
+        .option-label input { display: none; }
         .custom-radio {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text-muted);
-            border-radius: 50%;
-            margin-right: 15px;
-            position: relative;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
+            width: 20px; height: 20px; border: 2px solid var(--text-muted); border-radius: 50%;
+            margin-right: 15px; position: relative; transition: all 0.2s ease; flex-shrink: 0;
         }
-
-        .option-label input:checked + .custom-radio {
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
+        .option-label input:checked + .custom-radio { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
         .option-label input:checked + .custom-radio::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
         }
 
-        .option-label.selected {
-            border-color: var(--accent);
-            background: rgba(56, 189, 248, 0.05);
-        }
-
-        .action-btn {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 16px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .action-btn:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--text-main);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .action-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .action-btn.primary {
-            background: var(--accent);
-            color: #000;
-            border: none;
-        }
-
-        .action-btn.primary:hover {
-            box-shadow: 0 0 20px var(--accent-glow);
-            background: #7dd3fc;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
-        }
-
-        .feedback-area {
-            margin-top: 24px;
-            padding: 20px;
-            border-radius: 12px;
-            font-weight: 500;
-            display: none;
-            line-height: 1.5;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .correct-state {
-            border-color: var(--success) !important;
-            background: var(--success-glow) !important;
-        }
-
+        .option-label.selected { border-color: var(--accent); background: rgba(56, 189, 248, 0.05); }
+        .correct-state { border-color: var(--success) !important; background: var(--success-glow) !important; }
         .correct-state .custom-radio { border-color: var(--success); }
         .correct-state .custom-radio::after { background: var(--success); }
-
-        .wrong-state {
-            border-color: var(--error) !important;
-            background: var(--error-glow) !important;
-            opacity: 0.7;
-        }
-
+        .wrong-state { border-color: var(--error) !important; background: var(--error-glow) !important; opacity: 0.7; }
         .wrong-state .custom-radio { border-color: var(--error); }
         .wrong-state .custom-radio::after { background: var(--error); }
 
-        /* Offene Fragen Design */
+        .action-btn {
+            background: transparent; color: var(--text-main); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 16px 32px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; width: 100%; margin-top: 30px; transition: all 0.3s ease; backdrop-filter: blur(10px);
+        }
+        .action-btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); border-color: var(--text-main); }
+        .action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .action-btn.primary { background: var(--accent); color: #000; border: none; }
+        .action-btn.primary:hover { box-shadow: 0 0 20px var(--accent-glow); background: #7dd3fc; }
+
+        .status-badge {
+            display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
+        }
+
+        .feedback-area {
+            margin-top: 24px; padding: 20px; border-radius: 12px; font-weight: 500; display: none; line-height: 1.5;
+        }
+
         .solution-box {
-            background: rgba(0,0,0,0.3);
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            margin-top: 20px;
-            display: none;
+            background: rgba(0,0,0,0.3); border-left: 4px solid var(--accent);
+            padding: 20px; border-radius: 0 12px 12px 0; margin-top: 20px; display: none;
         }
-
-        .eval-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-            display: none;
-        }
-
+        .eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; display: none; }
         .eval-btn {
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid var(--glass-border);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: rgba(255,255,255,0.05);
-            color: white;
+            padding: 14px; border-radius: 10px; border: 1px solid var(--glass-border);
+            font-weight: 600; cursor: pointer; transition: all 0.2s; background: rgba(255,255,255,0.05); color: white;
         }
-
         .eval-btn.wrong:hover { background: var(--error); border-color: var(--error); }
         .eval-btn.correct:hover { background: var(--success); border-color: var(--success); }
     </style>
 </head>
 <body>
 
-<div class="glass-panel" id="quiz-container">
-    <div class="status-badge" id="progress-badge">Frage 1 / X</div>
+<div class="glass-panel">
     
-    <div id="question-content"></div>
-    
-    <div id="mc-container">
-        <ul class="options-list" id="options-list"></ul>
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Fragenpool Terminal</h1>
+            <p style="color: var(--text-muted);">Alle 46 Fragen aus dem Skript. Wähle ein Modul.</p>
+        </div>
+        <div class="dashboard-grid">
+            <div class="topic-card" onclick="startQuiz(1)">
+                <div>
+                    <h3>1. Architektur & Speicher</h3>
+                    <p>Stack-Frames, Heap-Zuordnungen, Cache-Lokalität.</p>
+                </div>
+            </div>
+            <div class="topic-card" onclick="startQuiz(2)">
+                <div>
+                    <h3>2. Rekursion & Iteration</h3>
+                    <p>Tail-Recursion, Winding, Fib-Optimierung.</p>
+                </div>
+            </div>
+            <div class="topic-card" onclick="startQuiz(3)">
+                <div>
+                    <h3>3. Asymptotische Notation</h3>
+                    <p>Big-O, Omega, Theta, Grenzwertmethode.</p>
+                </div>
+            </div>
+            <div class="topic-card" onclick="startQuiz(4)">
+                <div>
+                    <h3>4. Komplexitätsanalyse</h3>
+                    <p>Code-Tracing, Verdopplungsschleifen, Summenregel.</p>
+                </div>
+            </div>
+            <div class="topic-card" onclick="startQuiz(5)">
+                <div>
+                    <h3>5. Arrays & Listen</h3>
+                    <p>Amortisierte Laufzeiten, Pointers, Linked Lists.</p>
+                </div>
+            </div>
+            <div class="topic-card" onclick="startQuiz('open')" style="border-color: rgba(139, 92, 246, 0.5);">
+                <div>
+                    <h3 style="color: #c4b5fd;">6. Offene Fragen (Tracing)</h3>
+                    <p>Freitext-Begründungen und detaillierte Herleitungen aus allen Themen.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="open-container" style="display: none;">
-        <div class="solution-box" id="solution-box">
-            <div style="color: var(--accent); font-weight: 600; margin-bottom: 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Offizielle Musterlösung</div>
-            <div id="solution-text" style="color: #e2e8f0; font-size: 0.95rem;"></div>
+    <!-- QUIZ VIEW -->
+    <div id="quiz-container">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showDashboard()">← Dashboard</button>
+            <div class="status-badge" id="progress-badge">Frage 1 / X</div>
         </div>
-        <div class="eval-grid" id="eval-grid">
-            <button class="eval-btn wrong" onclick="nextQuestion(false)">Hatte ich falsch</button>
-            <button class="eval-btn correct" onclick="nextQuestion(true)">Hatte ich richtig</button>
+        
+        <div id="question-content"></div>
+        
+        <!-- For Multiple Choice -->
+        <div id="mc-container">
+            <ul class="options-list" id="options-list"></ul>
         </div>
-    </div>
 
-    <div id="feedback" class="feedback-area"></div>
-    
-    <button id="submit-btn" class="action-btn" onclick="checkAnswer()" disabled>Antwort bestätigen</button>
-    <button id="next-btn" class="action-btn primary" onclick="nextQuestion(true)" style="display: none;">Nächste Frage ➔</button>
+        <!-- For Open Questions -->
+        <div id="open-container" style="display: none;">
+            <div class="solution-box" id="solution-box">
+                <div style="color: var(--accent); font-weight: 600; margin-bottom: 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Musterlösung / Kriterien</div>
+                <div id="solution-text" style="color: #e2e8f0; font-size: 0.95rem;"></div>
+            </div>
+            <div class="eval-grid" id="eval-grid">
+                <button class="eval-btn wrong" onclick="nextQuestion()">Verstanden (Weiter)</button>
+                <button class="eval-btn correct" onclick="nextQuestion()">Hatte ich richtig!</button>
+            </div>
+        </div>
+
+        <div id="feedback" class="feedback-area"></div>
+        
+        <button id="submit-btn" class="action-btn" onclick="checkAnswer()" disabled>Antwort bestätigen</button>
+        <button id="next-btn" class="action-btn primary" onclick="nextQuestion()" style="display: none;">Nächste Frage ➔</button>
+    </div>
 </div>
 
 <script>
-    // Funktion zur Code-Hervorhebung (Mini-Syntax-Highlighter für Python)
     function highlightPython(code) {
         return code
             .replace(/\b(def|return|if|elif|else|while|for|in|print|len|max|sum)\b/g, '<span class="kw">$1</span>')
@@ -325,113 +331,92 @@
             .replace(/(#.*)/g, '<span class="comment">$1</span>');
     }
 
-    // Hilfsfunktion generiert die Mac-Code-Box
     function getCodeBox(codeString) {
-        return `
-        <div class="mac-window">
-            <div class="mac-header">
-                <div class="mac-btn mac-close"></div>
-                <div class="mac-btn mac-min"></div>
-                <div class="mac-btn mac-max"></div>
-            </div>
+        return `<div class="mac-window">
+            <div class="mac-header"><div class="mac-btn mac-close"></div><div class="mac-btn mac-min"></div><div class="mac-btn mac-max"></div></div>
             <pre><code>${highlightPython(codeString)}</code></pre>
         </div>`;
     }
 
-    // Exakte 1:1 Daten aus den Folien
-    const exactQuestions = [
-        {
-            type: "open",
-            question: "Predict the exact output of the program below, then briefly justify each printed value by reference to the heap/stack model. Distinguish carefully between mutating an object through a shared reference and rebinding a local name to a new object." + getCodeBox(`def modify(lst):
-    lst.append(4)
-    lst = [9, 9]
-    lst.append(5)
-
-a = [1, 2, 3]
-modify(a)
-print(a)
-print(len(a))`),
-            solution: "• Output: <code>[1, 2, 3, 4]</code> und <code>4</code>.<br>• The first statement <code>lst.append(4)</code> mutates the heap list that both lst (in modify's frame) and a (in the caller's frame) refer to.<br>• The statement <code>lst = [9, 9]</code> rebinds the local name lst to a brand-new list object on the heap.<br>• The subsequent <code>lst.append(5)</code> mutates the new list, which the caller never observes."
-        },
-        {
-            type: "mc",
-            question: "The function countdown below has a valid base case, yet may still raise RecursionError. For which call will a RecursionError first occur in CPython with default settings?" + getCodeBox(`def countdown(n):
-    if n <= 0:
-        return "done"
-    return countdown(n - 1)`),
-            options: [
-                "countdown(100)",
-                "countdown(500)",
-                "countdown(2000)",
-                "Never - the base case halts recursion"
-            ],
-            correct: 2
-        },
-        {
-            type: "mc",
-            question: "The naive recursive Fibonacci implementation below belongs to which complexity class with respect to running time?" + getCodeBox(`def fib(n):
-    if n <= 1:
-        return n
-    return fib(n - 1) + fib(n - 2)`),
-            options: ["O(1)", "O(n)", "O(n log n)", "O(2ⁿ)"],
-            correct: 3
-        },
-        {
-            type: "mc",
-            question: "What is the worst-case time complexity of the following function in terms of n = len(a)?" + getCodeBox(`def f(a):
-    n = len(a)
-    total = 0
-    for i in range(n):
-        for j in range(n):
-            total += 1
-    for k in range(n):
-        total += a[k]
-    return total`),
-            options: ["O(n)", "O(n log n)", "O(n²)", "O(n³)"],
-            correct: 2
-        },
-        {
-            type: "mc",
-            question: "A student wrote the binary search below. For which input does it incorrectly return -1 even though the target is present?" + getCodeBox(`def buggy_search(a, target):
-    lo, hi = 0, len(a) - 1
-    while lo < hi:
-        mid = (lo + hi) // 2
-        if a[mid] == target:
-            return mid
-        elif a[mid] < target:
-            lo = mid + 1      # <-- bug
-        else:
-            hi = mid - 1
-    return -1`),
-            options: [
-                "a = [], target = 5",
-                "a = [5], target = 5",
-                "a = [1, 3, 5], target = 3",
-                "a = [1, 3, 5], target = 4"
-            ],
-            correct: 3
-        },
-        {
-            type: "open",
-            question: "Trace the standard iterative reversal of the singly linked list <code>1 -> 2 -> 3 -> None</code> using the three-pointer pattern shown below. For each iteration, give the values of prev, curr, and next_node right after <code>next_node = curr.next</code> has run." + getCodeBox(`def reverse_list(head):
-    prev = None
-    curr = head
-    while curr is not None:
-        next_node = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next_node
-    return prev`),
-            solution: "Iter 1: prev=None, curr=1, next_node=2<br>Iter 2: prev=1, curr=2, next_node=3<br>Iter 3: prev=2, curr=3, next_node=None<br>Final return value: prev (which points to the node containing 3)."
-        }
+    // ALL 46 QUESTIONS FROM THE SOURCE DOCUMENT
+    const db = [
+        // TOPIC 1
+        {t:1, type:'mc', q:'A CPU runs a program by repeatedly performing three steps in a fixed order. Which sequence describes one iteration of this cycle?[cite: 1]', o:['Fetch the next instruction from memory using the program counter, decode it, then execute it','Decode the program, compile it to native code, then run it once','Read every instruction into a register, execute them in parallel, then write back results','Allocate memory for the next instruction, schedule it on a core, then commit the result'], c:0},
+        {t:1, type:'mc', q:'A function call pushes a new stack frame onto the call stack. Of the items listed below, which one lives on the heap rather than inside that frame?[cite: 1]', o:['The function\'s parameters passed in by the calling code','The function\'s local variable names and their scalar values','The return address pointing back into the caller\'s code','List and dictionary objects that the local variables refer to'], c:3},
+        {t:1, type:'mc', q:'Consider the function below. While f is executing, where do the name x and the list it refers to live, respectively?[cite: 1]', code: `def f():\n    x = [1, 2, 3]\n    return x[0]`, o:['Both x and the list [1, 2, 3] live in the stack frame of f','Both x and the list live on the heap','x is a local reference stored in the stack frame of f; the list object [1, 2, 3] lives on the heap','x lives on the heap because it points to a list; the list lives on the stack as a literal'], c:2},
+        {t:1, type:'mc', q:'A process\'s memory is organized into four regions. Which region holds the program\'s compiled machine instructions?[cite: 1]', o:['Stack','Heap','Data','Text'], c:3},
+        {t:1, type:'mc', q:'Which statement about the call stack is correct?[cite: 1]', o:['It is managed manually by the programmer with malloc/free','It is shared across all threads of the same process','It follows LIFO (Last In, First Out) ordering','It typically holds gigabytes of dynamically allocated objects'], c:2},
+        {t:1, type:'mc', q:'Which version is significantly faster on modern hardware, and why?[cite: 1]', code: `# Version R (row-then-column)\nfor i in range(n):\n    for j in range(n):\n        s += M[i][j]\n\n# Version C (column-then-row)\nfor j in range(n):\n    for i in range(n):\n        s += M[i][j]`, o:['Version R is much faster: consecutive inner-loop accesses fall in the same cache line, so a single memory fetch serves many subsequent reads','Version C is much faster: the CPU prefetches columns more aggressively than rows','Both versions run at the same speed','Version R is faster only on small matrices'], c:0},
+        // TOPIC 2
+        {t:2, type:'mc', q:'The function countdown below has a valid base case, yet may still raise RecursionError. For which call will a RecursionError first occur in CPython with default settings?[cite: 1]', code: `def countdown(n):\n    if n <= 0:\n        return "done"\n    return countdown(n - 1)`, o:['countdown(100)','countdown(500)','countdown(2000)','Never - the base case halts recursion'], c:2},
+        {t:2, type:'mc', q:'Match each of the three functions below (A, B, C) to its recursion pattern. Which assignment is correct?[cite: 1]', code: `#A\ndef power(b, e):\n    if e == 0: return 1\n    return b * power(b, e - 1)\n\n#B\ndef fib(n):\n    if n <= 1: return n\n    return fib(n - 1) + fib(n - 2)\n\n#C\ndef merge_sort(lst):\n    if len(lst) <= 1: return lst\n    mid = len(lst) // 2\n    return merge(merge_sort(lst[:mid]), merge_sort(lst[mid:]))`, o:['A: tree recursion, B: linear recursion, C: divide and conquer','A: linear recursion, B: tree recursion, C: divide and conquer','A: divide and conquer, B: linear recursion, C: tree recursion','A: tail recursion, B: divide and conquer, C: linear recursion'], c:1},
+        {t:2, type:'mc', q:'The naive recursive Fibonacci implementation is dramatically slower than necessary because:[cite: 1]', code: `def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)`, o:['Each call frame uses excessive memory','Python does not optimize tail recursion','Different branches independently recompute the same subproblems','The base case is incorrect'], c:2},
+        {t:2, type:'mc', q:'Any recursive function can be rewritten iteratively by replacing the implicit call stack with an explicit data structure. Which data structure plays that role, and why?[cite: 1]', o:['A queue, because frames must be processed in FIFO','A stack, because the last function called is the first to return - the same LIFO discipline the call stack uses','A priority queue, because the deepest frame should always be processed first','A hash table keyed by recursion depth'], c:1},
+        {t:2, type:'mc', q:'Every recursive function must have:[cite: 1]', o:['A loop and a recursive call','Two recursive calls per invocation','A base case and a recursive case','An accumulator parameter'], c:2},
+        {t:2, type:'mc', q:'Which implementation of factorial is tail-recursive?[cite: 1]', code: `#A\ndef fact_a(n):\n    if n <= 1: return 1\n    return n * fact_a(n - 1)\n\n#B\ndef fact_b(n, acc=1):\n    if n <= 1: return acc\n    return fact_b(n - 1, acc * n)\n\n#C\ndef fact_c(n):\n    if n <= 1: return 1\n    result = fact_c(n - 1)\n    return n * result\n\n#D\ndef fact_d(n):\n    return n * fact_d(n - 1) if n > 1 else 1`, o:['A - the recursive call is the last sub-expression','B - once the recursive call returns, the caller hands the result back unchanged','C - the result is stored in a variable','D - the recursive call appears inside a conditional'], c:1},
+        {t:2, type:'mc', q:'What is the recursion depth of digit_sum(n), defined recursively below, as a function of n?[cite: 1]', code: `def digit_sum(n):\n    if n < 10:\n        return n\n    return n % 10 + digit_sum(n // 10)`, o:['O(1)','O(log n)','O(n)','O(n²)'], c:1},
+        // TOPIC 3
+        {t:3, type:'mc', q:'Which statement most accurately characterizes f(n) = O(g(n))?[cite: 1]', o:['f(n) = g(n) for all n >= 0 treating constant factors as equal','There exist c > 0 and n₀ >= 1 such that f(n) <= c * g(n) for all n >= n₀','lim f(n)/g(n) = 0, so f grows strictly slower than g','f(n) is the exact worst-case running time of an algorithm'], c:1},
+        {t:3, type:'mc', q:'f(n) ∈ Ω(g(n)) holds, formally, when which of the following is true?[cite: 1]', o:['There exist constants c > 0 and n₀ such that f(n) <= c * g(n)','There exist constants c > 0 and n₀ such that f(n) >= c * g(n)','lim f(n)/g(n) = 0','f(n) and g(n) agree at every value of n'], c:1},
+        {t:3, type:'mc', q:'A classmate claims: "Big-O describes the worst-case running time, and Big-Omega describes the best case." Why is this claim wrong?[cite: 1]', o:['Big-O and Big-Omega are only defined for sorting algorithms','Big-O actually describes the average case while Big-Omega describes worst case','Notation (O/Ω/Θ) and case (best/worst/average) are independent dimensions, so any bound applies to any case','Big-O and Big-Omega describe the same set of functions'], c:2},
+        {t:3, type:'mc', q:'Rank the following functions from slowest growing to fastest growing: n!, nlogn, log³n, n², 2ⁿ[cite: 1]', o:['log³n < n log n < n² < 2ⁿ < n!','n log n < log³n < n² < 2ⁿ < n!','log³n < n² < n log n < 2ⁿ < n!','log³n < n log n < n² < n! < 2ⁿ'], c:0},
+        {t:3, type:'mc', q:'Using the limit method, evaluate: L = lim (5n² + 3n) / n²[cite: 1]', o:['L = 0, so 5n² + 3n = o(n²)','L = 5, so 5n² + 3n = Θ(n²)','L = ∞, so 5n² + 3n = ω(n²)','The limit does not exist'], c:1},
+        {t:3, type:'mc', q:'Θ(g(n)) equals which of the following set operations on the asymptotic classes?[cite: 1]', o:['O(g(n)) ∪ Ω(g(n))','O(g(n)) ∩ Ω(g(n))','O(g(n)) \\ Ω(g(n))','o(g(n)) ∪ ω(g(n))'], c:1},
+        // TOPIC 4
+        {t:4, type:'mc', q:'The naive recursive Fibonacci implementation below belongs to which complexity class with respect to running time?[cite: 1]', code: `def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)`, o:['O(1)','O(n)','O(n log n)','O(2ⁿ)'], c:3},
+        {t:4, type:'mc', q:'What is the worst-case time complexity of the following function in terms of n = len(a)?[cite: 1]', code: `def f(a):\n    n = len(a)\n    total = 0\n    for i in range(n):\n        for j in range(n):\n            total += 1\n    for k in range(n):\n        total += a[k]\n    return total`, o:['O(n)','O(n log n)','O(n²)','O(n³)'], c:2},
+        {t:4, type:'mc', q:'Using the sum and product rules for asymptotic notation, determine the tightest Big-O bound for the function below (assume Python\'s built-in list.sort runs in O(n log n)).[cite: 1]', code: `def f(a):\n    s = 0\n    for x in a:\n        s += x\n    for i in range(len(a)):\n        for j in range(len(a)):\n            if a[i] == a[j]:\n                s += 1\n    a.sort()\n    return s`, o:['O(n)','O(n log n)','O(n²)','O(n³)'], c:2},
+        // TOPIC 5
+        {t:5, type:'mc', q:'Array access a[i] is O(1) because:[cite: 1]', o:['Modern CPUs cache the entire array on first access','The address base + i * sizeof(element) is a constant-time computation','Python optimizes integer indexing through internal bytecode tricks','Arrays are implemented as hash tables under the hood'], c:1},
+        {t:5, type:'mc', q:'A dynamic array that doubles its capacity each time it fills up achieves amortized O(1) append. Which fact best explains why?[cite: 1]', o:['Over random inputs, only a constant fraction trigger a resize','The resize costs over n appends form a geometric series bounded by 2n, so the total work is O(n)','Modern allocators guarantee that growing a buffer in place is always O(1)','Doubling avoids resizes entirely'], c:1},
+        {t:5, type:'mc', q:'Inserting an element at index 0 of an array containing n elements is:[cite: 1]', o:['O(1)','O(log n)','O(n)','O(n²)'], c:2},
+        {t:5, type:'mc', q:'In a standard two-pointer approach, when the current sum a[lo] + a[hi] is strictly less than t, what should the algorithm do next?[cite: 1]', o:['Decrement hi, because the largest element pushes the sum too high','Increment lo, because on a sorted array that is the only move that can grow the sum','Decrement lo, because a smaller a[lo] might combine exactly','Increment both lo and hi'], c:1},
+        {t:5, type:'mc', q:'For which input does buggy_search incorrectly return -1 even though the target is present?[cite: 1]', code: `def buggy_search(a, target):\n    lo, hi = 0, len(a) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if a[mid] == target:\n            return mid\n        elif a[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1`, o:['a = [], target = 5','a = [5], target = 5','a = [1, 3, 5], target = 3','a = [1, 3, 5], target = 4'], c:3},
+        {t:5, type:'mc', q:'Let P[i] be the prefix-sum array with P[0]=0. The sum of a[l..r] (inclusive) equals:[cite: 1]', o:['P[r] - P[l]','P[r+1] - P[l]','P[r] + P[l]','P[r-1] - P[l+1]'], c:1},
+        {t:5, type:'mc', q:'Floyd\'s algorithm detects a cycle when the fast and slow pointers meet. To find the node where the cycle begins, what is the correct next step?[cite: 1]', o:['Continue advancing both pointers at speed 2 until they meet again','Reset one pointer to head and advance both by one step at a time','Reverse the list and search for an entry point','Switch to a hash-set algorithm'], c:1},
+        {t:5, type:'mc', q:'The main purpose of sentinel (dummy) nodes in a doubly linked list is:[cite: 1]', o:['To reduce memory usage per node','To enable O(1) random access by index','To eliminate edge-case branching in insert and delete code','To make the list circular'], c:2},
+        {t:5, type:'mc', q:'What does a singly linked list give you that a contiguous array does not?[cite: 1]', o:['O(1) random access by index','Better cache locality during traversal','O(1) insert/delete at a known node','Lower memory overhead per element'], c:2},
+        {t:5, type:'mc', q:'Promoting to DoublyLinkedList lowers deletion of last node to O(1). Which fact best explains the gap?[cite: 1]', o:['Doubly linked lists store their nodes contiguously in memory','In a doubly linked list tail.prev exposes the predecessor directly, singly must walk from head','A singly linked list cannot expose a tail pointer at all','Doubly linked lists maintain an internal index of positions'], c:1},
+        {t:5, type:'mc', q:'What goes wrong when the function is called on a non-empty list?[cite: 1]', code: `def insert_at_head(head, value):\n    new_node = Node(value)\n    head = new_node\n    new_node.next = head\n    return head`, o:['Never returns the new head correctly','The two assignments are reversed: head is overwritten before new_node.next is set, so it points to itself','Allocates on the stack frame, destroyed when function returns','Leaks memory'], c:1},
+        {t:5, type:'mc', q:'A textbook claims linked lists support "O(1) insertion and deletion". Which captures the actual guarantee?[cite: 1]', o:['Insertion/deletion are O(1) at the head only','Pointer rewiring is O(1), but locating the relevant node by position or by value is still O(n)','Insertion is O(1), but deletion is always O(n)','Both operations are O(1) on doubly linked lists regardless of position'], c:1},
+        {t:5, type:'mc', q:'Why can binary search not be applied to a sorted singly linked list?[cite: 1]', o:['Linked lists cannot be sorted','Binary search requires O(1) access to the middle element','Linked lists in Python lack a < operator','Binary search requires duplicate values'], c:1},
+        // OPEN QUESTIONS (TOPIC 6)
+        {t:'open', type:'open', q:'Predict the exact output of the program below, then briefly justify each printed value by reference to the heap/stack model.[cite: 1]', code: `def modify(lst):\n    lst.append(4)\n    lst = [9, 9]\n    lst.append(5)\n\na = [1, 2, 3]\nmodify(a)\nprint(a)\nprint(len(a))`, sol:'Output: [1, 2, 3, 4] und 4. The first statement lst.append(4) mutates the heap list that both local names refer to. Rebinding lst = [9, 9] points the local frame name to a new list. The final append affects only the disconnected new list.[cite: 1]'},
+        {t:'open', type:'open', q:'The function below has no base case and recurses forever. Add the missing base case and briefly justify why your choice both halts and produces a correct total.[cite: 1]', code: `def digit_sum(n):\n    return n % 10 + digit_sum(n // 10)`, sol:'Insert `if n == 0: return 0` (or `n < 10: return n`). Halting: each call replaces n with n//10, strictly decreasing. Correctness: base case contributes 0, each call back up adds its units digit exactly once.[cite: 1]'},
+        {t:'open', type:'open', q:'Both merge_sort and naive recursive fib make two recursive calls per invocation, yet merge_sort runs in O(n log n) while naive fib runs in O(2ⁿ). Explain the structural reason for this dramatic difference.[cite: 1]', sol:'In merge_sort each element belongs to exactly one branch (array is partitioned into disjoint halves). Work per level is O(n), O(log n) levels. In naive fib the two calls operate on overlapping subproblems (recomputed exponentially). Memoisation/tabulation brings fib down to O(n).[cite: 1]'},
+        {t:'open', type:'open', q:'Trace factorial(4) for the function below. Show each successive expansion on the way down (winding) and unwinding.[cite: 1]', code: `def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)`, sol:'Winding: 4 * fact(3) -> 4 * (3 * fact(2)) -> 4 * (3 * (2 * fact(1))). Base case: 1. Unwinding: 4 * (3 * (2 * 1)) -> 4 * (3 * 2) -> 4 * 6 -> 24.[cite: 1]'},
+        {t:'open', type:'open', q:'What does count_down_up(2) print, and why? Identify which prints happen during the winding phase and which during the unwinding phase.[cite: 1]', code: `def count_down_up(n):\n    if n <= 0:\n        return\n    print(n, end="")\n    count_down_up(n - 1)\n    print(n, end="")`, sol:'Output: 2 1 1 2. Winding phase (runs before recursive call): prints 2, then 1. Unwinding phase (runs after recursive call returns): prints 1, then 2.[cite: 1]'},
+        {t:'open', type:'open', q:'State the tightest asymptotic running time of count(n) below as a function of n, and justify your answer.[cite: 1]', code: `def count(n):\n    i = 1\n    c = 0\n    while i < n:\n        c += 1\n        i *= 2\n    return c`, sol:'Tight bound: Θ(log n). The variable i takes values 1, 2, 4, 8... 2^k. Loop exits as soon as 2^k >= n, i.e. k = [log2 n] iterations. Loop body executes exactly that many times.[cite: 1]'},
+        {t:'open', type:'open', q:'For each statement, write True or False and give a one-line justification. 1. Every O(n) is also O(n²). 2. If f(n) = O(g(n)), then g(n) = O(f(n)). 3. "Linear search is O(1)" is an accurate one-line summary.[cite: 1]', sol:'1. True - bounds stack upward. 2. False - Big-O is not symmetric. 3. False - O(1) is best case, worst case is Θ(n) so unqualified claim is misleading.[cite: 1]'},
+        {t:'open', type:'open', q:'Read the function below. (a) State what it returns. (b) Give its time and space complexity. (c) Describe the loop invariant.[cite: 1]', code: `def f(a):\n    best = s = a[0]\n    for i in range(1, len(a)):\n        s = max(a[i], s + a[i])\n        best = max(best, s)\n    return best`, sol:'(a) Maximum sum of any contiguous subarray (Kadane). (b) O(n) time, O(1) space. (c) Invariant: after iteration i, s holds the maximum sum of a contiguous subarray ending exactly at index i.[cite: 1]'},
+        {t:'open', type:'open', q:'State what f(a, k) computes, name the technique, and give its time complexity.[cite: 1]', code: `def f(a, k):\n    s = sum(a[:k])\n    best = s\n    for i in range(k, len(a)):\n        s += a[i] - a[i-k]\n        best = max(best, s)\n    return best`, sol:'Computes maximum sum of contiguous subarray of size k. Technique: sliding window (fixed-size). Time: O(n), Space O(1).[cite: 1]'},
+        {t:'open', type:'open', q:'Trace the iterative reversal of the list 1 -> 2 -> 3 -> None. Give the values of prev, curr, and next_node right after next_node = curr.next has run.[cite: 1]', code: `def reverse_list(head):\n    prev = None\n    curr = head\n    while curr is not None:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev`, sol:'Iter 1: prev=None, curr=1, next=2. Iter 2: prev=1, curr=2, next=3. Iter 3: prev=2, curr=3, next=None. Final return value: prev (points to 3).[cite: 1]'},
+        {t:'open', type:'open', q:'What is the value of the node returned by find_middle for the input list 1->2->3->4->5->6->None? Justify by tracing slow and fast.[cite: 1]', code: `def find_middle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    return slow`, sol:'Returned: node 4. Trace: Step 0: S=1, F=1. Step 1: S=2, F=3. Step 2: S=3, F=5. Step 3: S=4, F=None. Guard fails. Returns 4.[cite: 1]'}
     ];
 
+    let currentQuestions = [];
     let currentIndex = 0;
+
+    function showDashboard() {
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('dashboard-container').style.display = 'block';
+    }
+
+    function startQuiz(topic) {
+        currentQuestions = db.filter(q => q.t === topic);
+        currentIndex = 0;
+        document.getElementById('dashboard-container').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        loadQuestion();
+    }
     
     function loadQuestion() {
-        const q = exactQuestions[currentIndex];
-        document.getElementById('progress-badge').innerText = `Frage ${currentIndex + 1} / ${exactQuestions.length}`;
-        document.getElementById('question-content').innerHTML = `<h2>${q.question}</h2>`;
+        const q = currentQuestions[currentIndex];
+        document.getElementById('progress-badge').innerText = `Frage ${currentIndex + 1} / ${currentQuestions.length}`;
+        
+        let htmlStr = `<h2>${q.q}</h2>`;
+        if (q.code) htmlStr += getCodeBox(q.code);
+        document.getElementById('question-content').innerHTML = htmlStr;
         
         const submitBtn = document.getElementById('submit-btn');
         const nextBtn = document.getElementById('next-btn');
@@ -449,8 +434,7 @@ print(len(a))`),
             
             const list = document.getElementById('options-list');
             list.innerHTML = '';
-            
-            q.options.forEach((opt, idx) => {
+            q.o.forEach((opt, idx) => {
                 list.innerHTML += `
                     <li>
                         <label class="option-label" id="label-${idx}">
@@ -458,15 +442,14 @@ print(len(a))`),
                             <div class="custom-radio"></div>
                             <span>${opt}</span>
                         </label>
-                    </li>
-                `;
+                    </li>`;
             });
         } else {
             document.getElementById('mc-container').style.display = 'none';
             document.getElementById('open-container').style.display = 'block';
             document.getElementById('solution-box').style.display = 'none';
             document.getElementById('eval-grid').style.display = 'none';
-            document.getElementById('solution-text').innerHTML = q.solution;
+            document.getElementById('solution-text').innerHTML = q.sol;
             
             submitBtn.disabled = false;
             submitBtn.innerText = "Lösung aufdecken";
@@ -480,7 +463,7 @@ print(len(a))`),
     }
 
     function checkAnswer() {
-        const q = exactQuestions[currentIndex];
+        const q = currentQuestions[currentIndex];
         const submitBtn = document.getElementById('submit-btn');
         const feedback = document.getElementById('feedback');
 
@@ -494,7 +477,7 @@ print(len(a))`),
             document.getElementById('next-btn').style.display = 'block';
             feedback.style.display = 'block';
 
-            if (answer === q.correct) {
+            if (answer === q.c) {
                 document.getElementById(`label-${answer}`).classList.add('correct-state');
                 feedback.innerHTML = '🔥 <strong>Perfekt!</strong> Die Laufzeitanalyse ist exakt richtig.';
                 feedback.style.background = 'var(--success-glow)';
@@ -502,7 +485,7 @@ print(len(a))`),
                 feedback.style.color = 'var(--success)';
             } else {
                 document.getElementById(`label-${answer}`).classList.add('wrong-state');
-                document.getElementById(`label-${q.correct}`).classList.add('correct-state');
+                document.getElementById(`label-${q.c}`).classList.add('correct-state');
                 feedback.innerHTML = '⚠️ <strong>Knapp daneben.</strong> Die korrekte Antwort wurde hervorgehoben.';
                 feedback.style.background = 'var(--error-glow)';
                 feedback.style.border = '1px solid var(--error)';
@@ -517,21 +500,22 @@ print(len(a))`),
 
     function nextQuestion() {
         currentIndex++;
-        if (currentIndex < exactQuestions.length) {
+        if (currentIndex < currentQuestions.length) {
             loadQuestion();
         } else {
-            document.getElementById('quiz-container').innerHTML = `
+            document.getElementById('question-content').innerHTML = `
                 <div style="text-align: center; padding: 40px 0;">
-                    <h2 style="font-size: 2rem; color: var(--accent); margin-bottom: 10px;">Quiz beendet!</h2>
-                    <p style="color: var(--text-muted);">Alle Code-Traces erfolgreich abgeschlossen.</p>
-                    <button class="action-btn primary" onclick="location.reload()" style="max-width: 200px;">Neu starten</button>
-                </div>
-            `;
+                    <h2 style="font-size: 2rem; color: var(--accent); margin-bottom: 10px;">Modul beendet!</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">Du hast alle Fragen in dieser Kategorie durchgearbeitet.</p>
+                    <button class="action-btn primary" onclick="showDashboard()" style="max-width: 250px;">Zurück zum Dashboard</button>
+                </div>`;
+            document.getElementById('mc-container').style.display = 'none';
+            document.getElementById('open-container').style.display = 'none';
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
         }
     }
-
-    // Start
-    loadQuestion();
 </script>
 </body>
 </html>
